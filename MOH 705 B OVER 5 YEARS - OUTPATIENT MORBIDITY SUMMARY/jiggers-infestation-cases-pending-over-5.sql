@@ -1,0 +1,19 @@
+-- Get count of all new jiggers infection cases
+-- SELECT COUNT(DISTINCT p.person_id) AS 'Count'
+-- FROM person p
+-- INNER JOIN obs o ON o.person_id = p.person_id
+-- WHERE
+-- p.voided = 0
+-- AND o.voided = 0
+-- AND
+--   (o.concept_id=5109 )
+-- AND DATE(o.obs_datetime) BETWEEN :startOfPeriod AND :endOfPeriod
+-- AND o.value_coded IN ({{jiggers_infection_concept_id}})
+-- AND EXTRACT(YEAR FROM (FROM_DAYS(DATEDIFF(NOW(),p.birthdate)))) &gt; 5 
+-- get only new cases
+-- AND p.person_id NOT IN (
+--   SELECT person_id FROM obs 
+--   WHERE concept_id = 5109 
+--   AND value_coded IN ({{jiggers_infection_concept_id}})
+--   AND DATE(obs_datetime) &lt; :startOfPeriod)
+SELECT SUM(0) FROM obs WHERE obs.obs_datetime BETWEEN '2016-06-01' AND '2016-06-31'
